@@ -1,0 +1,26 @@
+%h1.page-header History
+
+- if !@log_games.empty?
+  .table-responsive
+    %table.table.table-striped
+      %thead
+        %tr
+          %th Date
+          %th Opponent
+          %th Score
+          %th Result
+      %tbody
+        - @log_games.each do |log_game|
+          %tr
+            %td #{log_game.month} #{log_game.day}, #{log_game.year}
+            %td= log_game.opponent.name
+            %td #{log_game.user_score} - #{log_game.opponent_score}
+            %td
+              - if log_game.user_score > log_game.opponent_score
+                %span W
+              - elsif log_game.user_score < log_game.opponent_score
+                %span L
+              - elsif log_game.user_score == log_game.opponent_score
+                %span D
+- else
+  %h2 There are not history yet

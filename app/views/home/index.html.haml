@@ -1,12 +1,18 @@
 %h1.page-header Leaderboard
 
 - if !@log_games.empty?
-  .table-responsive.no-margin
-    %table.table.table-striped.no-margin
+  .table-responsive
+    %table.table.table-striped
       %thead
         %tr
-          %th Nombre
-          %th Acciones
-      %tbody.food-group-item
+          %th Rank
+          %th Name
+          -# %th Score
+          -# %th Games played
+      %tbody
+        - @log_games.each_with_index do |log_game, index|
+          %tr
+            %td= index+1
+            %td= log_game.user.name
 - else
   %h2 There are not log games yet
