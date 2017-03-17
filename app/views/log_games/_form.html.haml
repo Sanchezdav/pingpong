@@ -1,0 +1,36 @@
+.row
+  .col-lg-6
+    = form_for @log_game do |f|
+      - if @log_game.errors.any?
+        %div
+          %ul
+            - @log_game.errors.full_messages.each do |msg|
+              %li
+                %h4= msg
+      .row
+        .col-lg-3
+          .form-group
+            = f.label "Day"
+            = f.select :day, options_for_select([['Monday'], ['Tuesday'], ['Wednesday'], ['Thursday'], ['Friday'], ['Saturday'], ['Sunday']])
+        .col-lg-3
+          .form-group
+            = f.label "Month"
+            = f.select :month, options_for_select([['January', 1], ['February', 2], ['March', 3], ['April', 4], ['May', 5], ['June', 6], ['July', 7], ['August', 8], ['September',9], ['October',10], ['November', 11], ['December', 12]])
+        .col-lg-3
+          .form-group
+            = f.label "Year"
+            = f.number_field :year, value: 2016
+      .form-group
+        = f.label "Opponent"
+        = f.collection_select(:opponent_id, User.all.where.not(name: current_user.name), :id, :name, {}, {class:"form-control"})
+      .form-group
+        = f.label "Your score"
+        %br
+        = f.number_field :user_score
+      .form-group
+        = f.label "Opponent score"
+        %br
+        = f.number_field :opponent_score
+      .form-group
+        = f.submit 'Save', class:'btn btn-success'
+        = link_to "Cancel", root_url,  class: 'btn'

@@ -1,0 +1,12 @@
+%h1.page-header Leaderboard
+
+- if !@log_games.empty?
+  .table-responsive.no-margin
+    %table.table.table-striped.no-margin
+      %thead
+        %tr
+          %th Nombre
+          %th Acciones
+      %tbody.food-group-item
+- else
+  %h2 There are not log games yet

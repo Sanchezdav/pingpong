@@ -11,7 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151119003939) do
+ActiveRecord::Schema.define(version: 20170317021011) do
+
+  create_table "log_games", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "opponent_id"
+    t.integer  "user_score",     default: 0
+    t.integer  "opponent_score", default: 0
+    t.string   "day"
+    t.integer  "month"
+    t.integer  "year"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "log_games", ["opponent_id"], name: "index_log_games_on_opponent_id"
+  add_index "log_games", ["user_id"], name: "index_log_games_on_user_id"
+
+# Could not dump table "sqlite_stat1" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
+
+# Could not dump table "sqlite_stat4" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -26,6 +47,7 @@ ActiveRecord::Schema.define(version: 20151119003939) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
