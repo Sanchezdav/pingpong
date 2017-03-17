@@ -7,12 +7,18 @@
         %tr
           %th Rank
           %th Name
-          -# %th Score
-          -# %th Games played
+          %th Score
+          %th Games played
       %tbody
         - @log_games.each_with_index do |log_game, index|
           %tr
             %td= index+1
-            %td= log_game.user.name
+            %td
+              - if log_game.user.name.nil?
+                = log_game.user.email
+              - else
+                = log_game.user.name
+            %td= log_game.total
+            %td= log_game.played
 - else
   %h2 There are not log games yet
