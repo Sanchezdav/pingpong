@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails',        '4.2.3'
+gem 'pg'
 gem 'sqlite3'
 gem 'uglifier',     '>= 1.3.0'
 gem 'sass-rails',   '~> 5.0'
@@ -23,3 +24,5 @@ group :development, :test do
   gem 'faker', '~> 1.6.1'
   gem 'factory_girl_rails', '~> 4.5.0'
 end
+
+gem 'rails_12factor', group: :production
